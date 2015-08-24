@@ -1,20 +1,9 @@
 package com.inspector.model;
 
 import java.io.Serializable;
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-
-import org.codehaus.jackson.annotate.JsonIgnore;
 
 
 /**
@@ -34,22 +23,21 @@ public class Palestra implements Serializable {
 	private Timestamp dataAlteracao;
 
 	private String nome;
-	
-	//bi-directional many-to-one association to Evento
-	@JsonIgnore
-	@ManyToOne
-	private Evento evento;
 
 	//bi-directional many-to-one association to Inscricao
-	@OneToMany(mappedBy="palestra", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="palestra")
 	private List<Inscricao> inscricoes;
 
 	//bi-directional many-to-one association to Ministracao
-	@OneToMany(mappedBy="palestra", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="palestra")
 	private List<Ministracao> ministracoes;
 
+	//bi-directional many-to-one association to Evento
+	@ManyToOne
+	private Evento evento;
+
 	//bi-directional many-to-one association to Palestrante
-	@OneToMany(mappedBy="palestra", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="palestra")
 	private List<Palestrante> palestrantes;
 
 	public Palestra() {

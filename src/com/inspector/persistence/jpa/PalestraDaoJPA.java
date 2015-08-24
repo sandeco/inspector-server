@@ -32,4 +32,19 @@ public class PalestraDaoJPA extends GenericDaoJPA<Palestra, Integer> implements 
 	
 	}
 
+	@Override
+	public List<Palestra> novasPalestras(String data) {
+
+		
+		String sql = "SELECT e FROM " + classePersistente.getSimpleName() + " e ";
+		
+		Query query = em.createQuery(sql);
+		
+		List<Palestra> palestras = query.getResultList();
+		
+		//em.detach(palestras);
+	
+		return palestras;
+	}
+
 }

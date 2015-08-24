@@ -2,9 +2,6 @@ package com.inspector.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
-import org.codehaus.jackson.annotate.JsonIgnore;
-
 import java.sql.Timestamp;
 
 
@@ -25,12 +22,10 @@ public class Participacao implements Serializable {
 	private Timestamp dataAlteracao;
 
 	//bi-directional many-to-one association to Ministracao
-	@JsonIgnore
 	@ManyToOne
 	private Ministracao ministracao;
 
 	//bi-directional many-to-one association to Participante
-	@JsonIgnore
 	@ManyToOne
 	private Participante participante;
 

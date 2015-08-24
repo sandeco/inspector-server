@@ -20,6 +20,7 @@ public class PalestraController {
 	@Autowired
 	private PalestraDAO dao;
 	
+	
 	@RequestMapping("/listAll")
 	public @ResponseBody String listAll(){
 		List<Palestra> eventos = dao.listAll();
@@ -27,6 +28,17 @@ public class PalestraController {
 		
 		return json;
 	}
+	
+	
+	@RequestMapping("/novasPalestras")
+	public @ResponseBody String listarInscricoesPalestra(@RequestParam String data){
+		
+		List<Palestra> palestras = dao.novasPalestras(data);
+		
+		return Json.listToJson(palestras);
+	}
+	
+	
 	
 	
 	@RequestMapping("/listarInscricoesPalestra")

@@ -31,7 +31,7 @@ public class Evento implements Serializable {
 	private String nome;
 
 	//bi-directional many-to-one association to Palestra
-	@OneToMany(mappedBy="evento", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="evento")
 	private List<Palestra> palestras;
 
 	public Evento() {
