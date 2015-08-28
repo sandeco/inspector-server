@@ -32,6 +32,9 @@ public class EventoController {
 		String json = "";
 		
 		List<Evento> eventos = dao.listAll();	
+		
+	
+		
 		json = Json.listToJson(eventos);
 		
 		return json;

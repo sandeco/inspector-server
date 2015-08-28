@@ -11,6 +11,8 @@ import com.inspector.persistence.dao.EventoDAO;
 @Repository
 public class EventoDaoJPA extends GenericDaoJPA<Evento, Integer> implements EventoDAO{
 
+	
+	
 	@Override
 	public Evento importarEvento(int idEvento) {
 		String sql = "SELECT e FROM " + classePersistente.getSimpleName() + " e WHERE e.id=" + idEvento;

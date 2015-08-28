@@ -2,6 +2,9 @@ package com.inspector.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -27,11 +30,13 @@ public class Participante implements Serializable {
 	private String nome;
 
 	//bi-directional many-to-one association to Inscricao
+	@JsonIgnore
 	@OneToMany(mappedBy="participante")
 	private List<Inscricao> inscricoes;
 
 	//bi-directional many-to-one association to Participacao
-	@OneToMany(mappedBy="participante")
+	@JsonIgnore
+	@OneToMany(mappedBy="participante")	
 	private List<Participacao> participacoes;
 
 	public Participante() {

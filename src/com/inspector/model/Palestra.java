@@ -2,6 +2,9 @@ package com.inspector.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -33,6 +36,7 @@ public class Palestra implements Serializable {
 	private List<Ministracao> ministracoes;
 
 	//bi-directional many-to-one association to Evento
+	@JsonIgnore
 	@ManyToOne
 	private Evento evento;
 
