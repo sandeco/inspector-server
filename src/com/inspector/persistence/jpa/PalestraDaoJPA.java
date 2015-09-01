@@ -42,7 +42,11 @@ public class PalestraDaoJPA extends GenericDaoJPA<Palestra, Integer> implements 
 		
 		List<Palestra> palestras = query.getResultList();
 		
-		//em.detach(palestras);
+		for(Palestra p : palestras){
+			p.setInscricoes(null);
+			p.setMinistracoes(null);
+			p.setPalestrantes(null);
+		}
 	
 		return palestras;
 	}
