@@ -7,7 +7,7 @@
   
   
   	<properties>
-		<spring.version>4.0.1.RELEASE</spring.version>
+		<spring.version>4.0.9.RELEASE</spring.version>
 		<tomcat.version>8.0.12</tomcat.version>
 		<hibernate.version>4.3.5.Final</hibernate.version>
 	</properties>
