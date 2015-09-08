@@ -1,27 +1,22 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>eventos</groupId>
-  <artifactId>eventos</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>war</packaging>
-  
-  
-  	<properties>
-		<spring.version>4.0.9.RELEASE</spring.version>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<groupId>inspector-server</groupId>
+	<artifactId>inspector</artifactId>
+
+	<properties>
+		<spring.version>4.0.6.RELEASE</spring.version>
 		<tomcat.version>8.0.12</tomcat.version>
 		<hibernate.version>4.3.5.Final</hibernate.version>
 	</properties>
 
 
 
-	<!-- REPOSITÓRIOS 
-	<repositories>
-		<repository>
-			<id>apache-snapshots</id>
-			<url>http://repo2.maven.org/maven2/org/apache/tomcat/</url>
-		</repository>
-	</repositories>
-	-->
+	<!-- REPOSITÓRIOS <repositories> <repository> <id>apache-snapshots</id> 
+		<url>http://repo2.maven.org/maven2/org/apache/tomcat/</url> </repository> 
+		</repositories> -->
 
 	<dependencies>
 
@@ -46,10 +41,17 @@
 			<version>${spring.version}</version>
 		</dependency>
 
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<version>1.2.5.RELEASE</version>
 		</dependency>
 
 
@@ -125,37 +127,44 @@
 			<version>1.9.13</version>
 		</dependency>
 
+
 		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>2.2.4</version>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.5.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>2.5.0</version>
 		</dependency>
 
 
 	</dependencies>
-  
-  
-  
-  
-  <build>
-    <sourceDirectory>src</sourceDirectory>
-    <plugins>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.3</version>
-        <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>2.6</version>
-        <configuration>
-          <warSourceDirectory>WebContent</warSourceDirectory>
-          <failOnMissingWebXml>false</failOnMissingWebXml>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+
+
+
+
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<warSourceDirectory>WebContent</warSourceDirectory>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>

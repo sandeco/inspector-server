@@ -1,7 +1,9 @@
 package com.inspector.model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -36,6 +38,21 @@ public class Evento implements Serializable {
 
 	public Evento() {
 	}
+	
+	
+
+	public Evento(int id, Timestamp dataAlteracao, Timestamp dataFim,
+			Timestamp dataInicio, String nome, List<Palestra> palestras) {
+		super();
+		this.id = id;
+		this.dataAlteracao = dataAlteracao;
+		this.dataFim = dataFim;
+		this.dataInicio = dataInicio;
+		this.nome = nome;
+		this.palestras = palestras;
+	}
+
+
 
 	public int getId() {
 		return this.id;

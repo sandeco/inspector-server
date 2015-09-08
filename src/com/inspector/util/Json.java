@@ -19,6 +19,8 @@ public class Json {
 			e.printStackTrace();
 		}
 		
+		
+		json.replace("\\", "");
 		return json;
 	}
 	
