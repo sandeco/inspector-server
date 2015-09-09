@@ -26,7 +26,7 @@ public class EventoController {
 	}
 
 	
-	@RequestMapping("/listAll")
+	@RequestMapping("/eventos")
 	public @ResponseBody String listAll(){
 		
 		String json = "";

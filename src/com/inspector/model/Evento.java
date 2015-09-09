@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -33,6 +35,7 @@ public class Evento implements Serializable {
 	private String nome;
 
 	//bi-directional many-to-one association to Palestra
+	@JsonIgnore
 	@OneToMany(mappedBy="evento")
 	private List<Palestra> palestras;
 

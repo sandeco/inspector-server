@@ -1,12 +1,22 @@
 package com.inspector.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
-
-import org.codehaus.jackson.annotate.JsonIgnore;
-
 import java.sql.Timestamp;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.map.annotate.JsonView;
+
+import com.inspector.util.ViewJson;
 
 
 /**
@@ -18,20 +28,25 @@ import java.util.List;
 public class Palestra implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 
+	
 	@Column(name="data_alteracao")
 	private Timestamp dataAlteracao;
 
+	
 	private String nome;
 
 	//bi-directional many-to-one association to Inscricao
+	@JsonIgnore
 	@OneToMany(mappedBy="palestra")
 	private List<Inscricao> inscricoes;
 
 	//bi-directional many-to-one association to Ministracao
+	@JsonIgnore
 	@OneToMany(mappedBy="palestra")
 	private List<Ministracao> ministracoes;
 
@@ -41,6 +56,7 @@ public class Palestra implements Serializable {
 	private Evento evento;
 
 	//bi-directional many-to-one association to Palestrante
+	@JsonIgnore
 	@OneToMany(mappedBy="palestra")
 	private List<Palestrante> palestrantes;
 
@@ -143,6 +159,14 @@ public class Palestra implements Serializable {
 		palestrante.setPalestra(null);
 
 		return palestrante;
+	}
+	
+	public int getIdEvento(){
+		return evento.getId();
+	}
+	
+	public void setIdEvento(){
+		
 	}
 
 }

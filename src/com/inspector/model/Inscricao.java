@@ -14,7 +14,8 @@ import java.sql.Timestamp;
  */
 @Entity
 @NamedQuery(name="Inscricao.findAll", query="SELECT i FROM Inscricao i")
-public class Inscricao implements Serializable {
+public 
+class Inscricao implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
