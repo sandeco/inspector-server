@@ -1,3 +1,4 @@
+
 package com.inspector.model;
 
 import java.io.Serializable;

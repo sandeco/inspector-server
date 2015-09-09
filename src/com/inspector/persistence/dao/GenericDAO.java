@@ -16,5 +16,7 @@ public interface GenericDAO<T, ID extends Serializable> {
 	
 	public List<T> listAllUpdated(String date);
 	
+	
+	
 
 }
