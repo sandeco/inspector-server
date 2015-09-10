@@ -4,18 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.inspector.model.Evento;
-import com.inspector.persistence.dao.EventoDAO;
+import com.inspector.model.Palestrante;
+import com.inspector.persistence.dao.PalestranteDAO;
 
-@RequestMapping("/evento")
+@RequestMapping("/palestrante")
 @Controller
-public class EventoController extends GenericController<Evento, Integer> {
+public class PalestranteController extends GenericController<Palestrante, Integer> {
 
 	
 	@Autowired
-	public EventoController(EventoDAO dao) {
+	public PalestranteController(PalestranteDAO dao) {
 		super(dao);
 	}
-	
-	
+
 }
+
