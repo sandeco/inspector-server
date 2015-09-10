@@ -4,17 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.inspector.model.Palestra;
-import com.inspector.persistence.dao.PalestraDAO;
+import com.inspector.model.Inscricao;
+import com.inspector.persistence.dao.InscricaoDAO;
 
-@RequestMapping("/palestra")
+@RequestMapping("/inscricao")
 @Controller
-public class PalestraController extends GenericController<Palestra, Integer>{
+public class InscricaoController extends GenericController<Inscricao, Integer> {
 
 	@Autowired
-	public PalestraController(PalestraDAO dao) {
+	public InscricaoController(InscricaoDAO dao) {
 		super(dao);
 	}
 	
-
 }
