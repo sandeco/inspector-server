@@ -1,21 +1,25 @@
 package com.inspector.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.inspector.model.Evento;
 import com.inspector.persistence.dao.EventoDAO;
-import com.inspector.util.Json;
 
+@RequestMapping("/evento")
 @RestController
-public class EventoController {
+public class EventoController extends GenericController<Evento, Integer> {
 
+	
+	@Autowired
+	public EventoController(EventoDAO dao) {
+		super(dao);
+	}
+
+	
+	
+	/*
 	@Autowired
 	private EventoDAO dao;
 	
@@ -52,7 +56,7 @@ public class EventoController {
 		json = Json.listToJson(eventos);
 		return json;
 	}
-	
+	*/
 
 	
 	
