@@ -53,6 +53,7 @@ class Inscricao implements Serializable {
 		this.dataAlteracao = dataAlteracao;
 	}
 
+	
 	public Palestra getPalestra() {
 		return this.palestra;
 	}
@@ -61,6 +62,7 @@ class Inscricao implements Serializable {
 		this.palestra = palestra;
 	}
 
+	
 	public Participante getParticipante() {
 		return this.participante;
 	}
@@ -68,5 +70,23 @@ class Inscricao implements Serializable {
 	public void setParticipante(Participante participante) {
 		this.participante = participante;
 	}
+	
+	
+	public int getIdPalestra(){
+		return palestra.getId();
+	}
+	
+	public void setIdPalestra(){
+		
+	}
+	
+	public int getIdParticipante(){
+		return participante.getId();
+	}
+	
+	public void setIdParticipante(){
+		
+	}
+	
 
 }

@@ -36,6 +36,7 @@ public class Ministracao implements Serializable {
 	private Palestra palestra;
 
 	//bi-directional many-to-one association to Participacao
+	@JsonIgnore
 	@OneToMany(mappedBy="ministracao")
 	private List<Participacao> participacoes;
 
@@ -103,5 +104,15 @@ public class Ministracao implements Serializable {
 
 		return participacao;
 	}
+	
+	
+	public int getIdPalestra(){
+		return palestra.getId();
+	}
+	
+	public void setIdPalestra(){
+		
+	}
+
 
 }

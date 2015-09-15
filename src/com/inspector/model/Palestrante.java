@@ -65,5 +65,14 @@ public class Palestrante implements Serializable {
 	public void setPalestra(Palestra palestra) {
 		this.palestra = palestra;
 	}
+	
+	public int getIdPalestra(){
+		return palestra.getId();
+	}
+	
+	public void setIdPalestra(){
+		
+	}
+
 
 }

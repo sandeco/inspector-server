@@ -3,7 +3,7 @@ package com.inspector.persistence.dao;
 import java.io.Serializable;
 import java.util.List;
 
-public interface GenericDAO<T, ID extends Serializable> {
+public interface GenericDAO<T extends Serializable, ID extends Serializable> {
 	
 	
 	public T create(T entidade);

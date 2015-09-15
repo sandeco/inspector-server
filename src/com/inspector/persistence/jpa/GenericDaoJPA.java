@@ -12,7 +12,7 @@ import javax.persistence.TemporalType;
 import com.inspector.persistence.dao.GenericDAO;
 import com.inspector.util.JPAUtil;
 
-public abstract class GenericDaoJPA<T, ID extends Serializable>  implements GenericDAO<T, ID> {
+public abstract class GenericDaoJPA<T extends Serializable, ID extends Serializable>  implements GenericDAO<T, ID> {
 	
 	EntityManager em;
 	Class<T> classePersistente;
@@ -85,10 +85,6 @@ public abstract class GenericDaoJPA<T, ID extends Serializable>  implements Gene
 	@Override
 	public List<T> listAll() {
 		String sql = "SELECT e FROM " + classePersistente.getSimpleName() + " e";
-		
-		
-		
-		
 		Query query = em.createQuery(sql);
 	    return query.getResultList();
 	}
