@@ -4,9 +4,12 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.map.annotate.JsonView;
+
+import com.inspector.util.ViewJson;
 
 import java.sql.Timestamp;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -37,8 +40,8 @@ public class Ministracao implements Serializable {
 
 	//bi-directional many-to-one association to Participacao
 	@JsonIgnore
-	@OneToMany(mappedBy="ministracao")
-	private List<Participacao> participacoes;
+	@OneToMany(mappedBy="ministracao", fetch=FetchType.EAGER)
+	private Set<Participacao> participacoes;
 
 	public Ministracao() {
 	}
@@ -83,11 +86,11 @@ public class Ministracao implements Serializable {
 		this.palestra = palestra;
 	}
 
-	public List<Participacao> getParticipacoes() {
+	public Set<Participacao> getParticipacoes() {
 		return this.participacoes;
 	}
 
-	public void setParticipacoes(List<Participacao> participacoes) {
+	public void setParticipacoes(Set<Participacao> participacoes) {
 		this.participacoes = participacoes;
 	}
 
@@ -104,8 +107,9 @@ public class Ministracao implements Serializable {
 
 		return participacao;
 	}
-	
-	
+
+
+	@JsonView(ViewJson.summary.class)
 	public int getIdPalestra(){
 		return palestra.getId();
 	}
@@ -113,6 +117,19 @@ public class Ministracao implements Serializable {
 	public void setIdPalestra(){
 		
 	}
-
-
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+		
+		if(obj==null)return false;
+		if(!(obj instanceof Ministracao))return false;
+		
+		Ministracao ob1 = (Ministracao) obj;
+		if(ob1.id==this.id)
+			return true;
+		else
+			return false;
+		
+	}
 }

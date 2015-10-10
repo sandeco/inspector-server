@@ -1,14 +1,9 @@
-
 package com.inspector.model;
 
 import java.io.Serializable;
-
 import javax.persistence.*;
-
-import org.codehaus.jackson.annotate.JsonIgnore;
-
 import java.sql.Timestamp;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -36,27 +31,11 @@ public class Evento implements Serializable {
 	private String nome;
 
 	//bi-directional many-to-one association to Palestra
-	@JsonIgnore
 	@OneToMany(mappedBy="evento")
-	private List<Palestra> palestras;
+	private Set<Palestra> palestras;
 
 	public Evento() {
 	}
-	
-	
-
-	public Evento(int id, Timestamp dataAlteracao, Timestamp dataFim,
-			Timestamp dataInicio, String nome, List<Palestra> palestras) {
-		super();
-		this.id = id;
-		this.dataAlteracao = dataAlteracao;
-		this.dataFim = dataFim;
-		this.dataInicio = dataInicio;
-		this.nome = nome;
-		this.palestras = palestras;
-	}
-
-
 
 	public int getId() {
 		return this.id;
@@ -98,11 +77,11 @@ public class Evento implements Serializable {
 		this.nome = nome;
 	}
 
-	public List<Palestra> getPalestras() {
+	public Set<Palestra> getPalestras() {
 		return this.palestras;
 	}
 
-	public void setPalestras(List<Palestra> palestras) {
+	public void setPalestras(Set<Palestra> palestras) {
 		this.palestras = palestras;
 	}
 

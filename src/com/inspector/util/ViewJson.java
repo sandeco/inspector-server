@@ -1,7 +1,6 @@
 package com.inspector.util;
 
 public class ViewJson {
-	
-	public static class Summary{}
-
+        public static class summary {}
+        public static class allproperties extends summary {}
 }

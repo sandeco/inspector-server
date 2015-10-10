@@ -1,11 +1,20 @@
 package com.inspector.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import java.sql.Timestamp;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.map.annotate.JsonView;
 
-import java.sql.Timestamp;
+import com.inspector.util.ViewJson;
 
 
 /**
@@ -14,8 +23,7 @@ import java.sql.Timestamp;
  */
 @Entity
 @NamedQuery(name="Inscricao.findAll", query="SELECT i FROM Inscricao i")
-public 
-class Inscricao implements Serializable {
+public class Inscricao implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -32,6 +40,7 @@ class Inscricao implements Serializable {
 
 	//bi-directional many-to-one association to Participante
 	@ManyToOne
+	@JsonView(ViewJson.allproperties.class)
 	private Participante participante;
 
 	public Inscricao() {
@@ -53,7 +62,6 @@ class Inscricao implements Serializable {
 		this.dataAlteracao = dataAlteracao;
 	}
 
-	
 	public Palestra getPalestra() {
 		return this.palestra;
 	}
@@ -62,7 +70,6 @@ class Inscricao implements Serializable {
 		this.palestra = palestra;
 	}
 
-	
 	public Participante getParticipante() {
 		return this.participante;
 	}
@@ -71,7 +78,7 @@ class Inscricao implements Serializable {
 		this.participante = participante;
 	}
 	
-	
+	@JsonView(ViewJson.summary.class)
 	public int getIdPalestra(){
 		return palestra.getId();
 	}
@@ -80,13 +87,18 @@ class Inscricao implements Serializable {
 		
 	}
 	
-	public int getIdParticipante(){
-		return participante.getId();
-	}
-	
-	public void setIdParticipante(){
+	@Override
+	public boolean equals(Object obj) {
+		
+		if(obj==null)return false;
+		if(!(obj instanceof Inscricao))return false;
+		
+		Inscricao ob1 = (Inscricao) obj;
+		if(ob1.id==this.id)
+			return true;
+		else
+			return false;
 		
 	}
-	
 
 }

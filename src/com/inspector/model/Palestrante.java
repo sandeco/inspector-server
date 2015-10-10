@@ -4,6 +4,9 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.map.annotate.JsonView;
+
+import com.inspector.util.ViewJson;
 
 import java.sql.Timestamp;
 
@@ -27,8 +30,8 @@ public class Palestrante implements Serializable {
 	private String nome;
 
 	//bi-directional many-to-one association to Palestra
-	@JsonIgnore
 	@ManyToOne
+	@JsonIgnore
 	private Palestra palestra;
 
 	public Palestrante() {
@@ -65,7 +68,8 @@ public class Palestrante implements Serializable {
 	public void setPalestra(Palestra palestra) {
 		this.palestra = palestra;
 	}
-	
+
+	@JsonView(ViewJson.summary.class)
 	public int getIdPalestra(){
 		return palestra.getId();
 	}
@@ -73,6 +77,6 @@ public class Palestrante implements Serializable {
 	public void setIdPalestra(){
 		
 	}
-
-
+	
+	
 }

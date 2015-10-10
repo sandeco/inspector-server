@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee" 
          xmlns:web="http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee">
-  
+  <!-- 
   <display-name>inspector-server</display-name>
   <welcome-file-list>
     <welcome-file>index.htm</welcome-file>
@@ -31,4 +31,6 @@
   <session-config>
     <session-timeout>120</session-timeout>
   </session-config>
+  
+   -->
 </web-app>

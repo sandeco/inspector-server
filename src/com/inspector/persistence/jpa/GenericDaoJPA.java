@@ -21,18 +21,34 @@ public abstract class GenericDaoJPA<T extends Serializable, ID extends Serializa
 	//CONSTRUTOR DA CLASSE DAO GENERICA
 	@SuppressWarnings("unchecked")
 	public GenericDaoJPA() {
-		em = JPAUtil.getEntityManager();
+		open();
 		this.classePersistente = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 	}
 	
+	
+	private void open(){
+		if(em==null){
+			em = JPAUtil.getEntityManager();
+		}else if(!em.isOpen()){
+			em = JPAUtil.getEntityManager();
+		}
+	}
+	
+	
+	private void close(){
+		if(em.isOpen()){
+			em.close();
+		}
+		
+	}
 
 	@Override
 	public T create(T entidade) {
-		em = JPAUtil.getEntityManager();
+		open();
 		em.getTransaction().begin();
 		em.persist(entidade);
 		em.getTransaction().commit();
-		em.close();
+		this.close();
 		return entidade;
 	}
 
@@ -45,10 +61,11 @@ public abstract class GenericDaoJPA<T extends Serializable, ID extends Serializa
 	
 	@Override
 	public T update(T entidade) {
-		em = JPAUtil.getEntityManager();
+		open();
 		em.getTransaction().begin();
 		em.merge(entidade);
 		em.getTransaction().commit();
+		close();
 		return entidade;
 	}
 	
@@ -56,12 +73,12 @@ public abstract class GenericDaoJPA<T extends Serializable, ID extends Serializa
 	@Override
 	public void delete(ID id) throws Exception {
 		try {
-			em = JPAUtil.getEntityManager();
+			open();
 			em.getTransaction().begin();
 			T entity = em.find(classePersistente, id);
 			em.remove(entity);
 			em.getTransaction().commit();
-			
+			close();
 		} catch (Exception e) {
 			throw e;
 		}finally{
@@ -73,9 +90,9 @@ public abstract class GenericDaoJPA<T extends Serializable, ID extends Serializa
 
 	@Override
 	public T findById(ID id) {
-		em = JPAUtil.getEntityManager();
+		open();
 		T entity = em.find(classePersistente, id);
-
+		close();
 		return entity;
 	}
 
@@ -84,14 +101,21 @@ public abstract class GenericDaoJPA<T extends Serializable, ID extends Serializa
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> listAll() {
+		open();
 		String sql = "SELECT e FROM " + classePersistente.getSimpleName() + " e";
 		Query query = em.createQuery(sql);
-	    return query.getResultList();
+		
+		List<T> list =  query.getResultList();
+		close();
+	    return list;
 	}
 
 
 	@Override
 	public List<T> listAllUpdated(String date) {
+		
+		
+		open();
 		
 		Timestamp time= null;
 		try{
@@ -111,8 +135,10 @@ public abstract class GenericDaoJPA<T extends Serializable, ID extends Serializa
 		Query query = em.createQuery(sql);
 		query.setParameter("date", time, TemporalType.TIMESTAMP);
 		
+		List<T> list =  query.getResultList();
+		close();
 		
-	    return query.getResultList();
+	    return list;
 	}
 	
 	

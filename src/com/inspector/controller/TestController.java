@@ -1,15 +1,17 @@
 package com.inspector.controller;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class TestController {
 	
+	
+	
 	@RequestMapping(value="/Teste")
-	public @ResponseBody String criarTeste(){
-		return "teste";
+	public String criarTeste(){
+			
+		return "Teste";
 	}
 
 }

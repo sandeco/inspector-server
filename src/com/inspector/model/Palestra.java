@@ -2,10 +2,11 @@ package com.inspector.model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,27 +29,25 @@ import com.inspector.util.ViewJson;
 public class Palestra implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 
-	
 	@Column(name="data_alteracao")
 	private Timestamp dataAlteracao;
 
-	
 	private String nome;
 
 	//bi-directional many-to-one association to Inscricao
-	@JsonIgnore
-	@OneToMany(mappedBy="palestra")
-	private List<Inscricao> inscricoes;
+	@OneToMany(mappedBy="palestra", fetch=FetchType.EAGER)
+	@JsonView(ViewJson.allproperties.class)
+	private Set<Inscricao> inscricoes;
+
 
 	//bi-directional many-to-one association to Ministracao
-	@JsonIgnore
-	@OneToMany(mappedBy="palestra")
-	private List<Ministracao> ministracoes;
+	@OneToMany(mappedBy="palestra", fetch=FetchType.EAGER)
+	@JsonView(ViewJson.allproperties.class)
+	private Set<Ministracao> ministracoes;
 
 	//bi-directional many-to-one association to Evento
 	@JsonIgnore
@@ -56,9 +55,9 @@ public class Palestra implements Serializable {
 	private Evento evento;
 
 	//bi-directional many-to-one association to Palestrante
-	@JsonIgnore
-	@OneToMany(mappedBy="palestra")
-	private List<Palestrante> palestrantes;
+	@OneToMany(mappedBy="palestra", fetch=FetchType.EAGER)
+	@JsonView(ViewJson.allproperties.class)
+	private Set<Palestrante> palestrantes;
 
 	public Palestra() {
 	}
@@ -87,11 +86,11 @@ public class Palestra implements Serializable {
 		this.nome = nome;
 	}
 
-	public List<Inscricao> getInscricoes() {
+	public Set<Inscricao> getInscricoes() {
 		return this.inscricoes;
 	}
 
-	public void setInscricoes(List<Inscricao> inscricoes) {
+	public void setInscricoes(Set<Inscricao> inscricoes) {
 		this.inscricoes = inscricoes;
 	}
 
@@ -109,11 +108,11 @@ public class Palestra implements Serializable {
 		return inscricao;
 	}
 
-	public List<Ministracao> getMinistracoes() {
+	public Set<Ministracao> getMinistracoes() {
 		return this.ministracoes;
 	}
 
-	public void setMinistracoes(List<Ministracao> ministracoes) {
+	public void setMinistracoes(Set<Ministracao> ministracoes) {
 		this.ministracoes = ministracoes;
 	}
 
@@ -139,11 +138,11 @@ public class Palestra implements Serializable {
 		this.evento = evento;
 	}
 
-	public List<Palestrante> getPalestrantes() {
+	public Set<Palestrante> getPalestrantes() {
 		return this.palestrantes;
 	}
 
-	public void setPalestrantes(List<Palestrante> palestrantes) {
+	public void setPalestrantes(Set<Palestrante> palestrantes) {
 		this.palestrantes = palestrantes;
 	}
 
@@ -160,7 +159,9 @@ public class Palestra implements Serializable {
 
 		return palestrante;
 	}
-	
+
+
+	@JsonView(ViewJson.summary.class)
 	public int getIdEvento(){
 		return evento.getId();
 	}
@@ -169,4 +170,21 @@ public class Palestra implements Serializable {
 		
 	}
 
+	
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+		
+		if(obj==null)return false;
+		if(!(obj instanceof Palestra))return false;
+		
+		Palestra ob1 = (Palestra) obj;
+		if(ob1.id==this.id)
+			return true;
+		else
+			return false;
+		
+	}
+	
 }

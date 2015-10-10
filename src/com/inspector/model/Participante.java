@@ -6,7 +6,7 @@ import javax.persistence.*;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 import java.sql.Timestamp;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -32,12 +32,12 @@ public class Participante implements Serializable {
 	//bi-directional many-to-one association to Inscricao
 	@JsonIgnore
 	@OneToMany(mappedBy="participante")
-	private List<Inscricao> inscricoes;
+	private Set<Inscricao> inscricoes;
 
 	//bi-directional many-to-one association to Participacao
 	@JsonIgnore
-	@OneToMany(mappedBy="participante")	
-	private List<Participacao> participacoes;
+	@OneToMany(mappedBy="participante")
+	private Set<Participacao> participacoes;
 
 	public Participante() {
 	}
@@ -74,11 +74,11 @@ public class Participante implements Serializable {
 		this.nome = nome;
 	}
 
-	public List<Inscricao> getInscricoes() {
+	public Set<Inscricao> getInscricoes() {
 		return this.inscricoes;
 	}
 
-	public void setInscricoes(List<Inscricao> inscricoes) {
+	public void setInscricoes(Set<Inscricao> inscricoes) {
 		this.inscricoes = inscricoes;
 	}
 
@@ -96,11 +96,11 @@ public class Participante implements Serializable {
 		return inscricao;
 	}
 
-	public List<Participacao> getParticipacoes() {
+	public Set<Participacao> getParticipacoes() {
 		return this.participacoes;
 	}
 
-	public void setParticipacoes(List<Participacao> participacoes) {
+	public void setParticipacoes(Set<Participacao> participacoes) {
 		this.participacoes = participacoes;
 	}
 
@@ -118,4 +118,22 @@ public class Participante implements Serializable {
 		return participacao;
 	}
 
+	
+	@Override
+	public boolean equals(Object obj) {
+		
+		if(obj==null)return false;
+		if(!(obj instanceof Participante))return false;
+		
+		Participante ob1 = (Participante) obj;
+		if(ob1.id==this.id)
+			return true;
+		else
+			return false;
+		
+	}
+
+	
+	
+	
 }
