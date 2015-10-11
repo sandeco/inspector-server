@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Etiquetas</title>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script>
+		$(function() {
+			listaParticipantes = [];
+			$.get("https://dl.dropboxusercontent.com/u/10489961/participante.json", function(data) {
+
+				var p
+				for(p in data) {
+					var part = data[p];
+					var partElement = $("#template").clone();
+					$("img", partElement).attr("src", "http://chart.apis.google.com/chart?cht=qr&chl="+part.id+"&chs=120x120");
+					$(".nome", partElement).text(part.nome);
+					$(".inscricao", partElement).html("<b>"+part.cpf+"</b>");
+					partElement.appendTo($("body")).show();
+				}
+			}, "json");
+		});
+		
+		// http://chart.apis.google.com/chart?cht=qr&chl=1001&chs=120x120
+	</script>
+	
+	<style>
+		body {
+			width: 214mm;
+			margin: 0px;
+			padding: 0px;
+			padding-top: 4mm;
+		}
+		.etiqueta {
+			height: 39mm;
+			width: 102mm;
+			float: left;
+			margin: 0px;
+			margin-right: 4mm;
+			font-family: Verdana, Arial;
+			font-size: 12pt;
+		}
+		.etiqueta img {
+			float: left;
+		}
+		.etiqueta .nome {
+			float: left;
+			margin-top: 4mm;
+			width: 260px;
+			font-weight: bold;
+		}
+		.etiqueta .inscricao {
+			float: left;
+			margin-top: 4mm;
+		}
+		#template {
+			display: none;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="etiqueta" id="template">
+		<img src="http://chart.apis.google.com/chart?cht=qr&chl=1001&chs=120x120" />
+		<div class="nome">OTÁVIO CALAÇA XAVIER DA SILVA DANTAS MATIAS AMELOSA</div>
+		<div class="inscricao">Inscrição: <b>1230142</b></div>
+	</div>
+</body>
+</html>

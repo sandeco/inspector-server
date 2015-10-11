@@ -17,14 +17,6 @@ public class EventoController extends GenericController<Evento, Integer> {
 		super(dao);
 	}
 	
-	
-	/*
-	@RequestMapping("/eventos") 
-	public String listOF(){
-		String json;
-		List<Evento> list = 
-		
-		return json;
-	}
-	*/
+
+
 }

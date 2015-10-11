@@ -2,6 +2,11 @@ package com.inspector.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.codehaus.jackson.map.annotate.JsonView;
+
+import com.inspector.util.ViewJson;
+
 import java.sql.Timestamp;
 import java.util.Set;
 
@@ -32,6 +37,7 @@ public class Evento implements Serializable {
 
 	//bi-directional many-to-one association to Palestra
 	@OneToMany(mappedBy="evento")
+	@JsonView(ViewJson.allproperties.class)
 	private Set<Palestra> palestras;
 
 	public Evento() {

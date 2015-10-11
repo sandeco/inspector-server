@@ -39,7 +39,8 @@ public abstract class GenericController<T extends Serializable, ID extends Seria
 	@RequestMapping(value="/dataAlteracao/{date}", produces=MediaType.APPLICATION_JSON_VALUE) // BY REST
 	public @ResponseBody String getByDateRest(@PathVariable String date){
 		List<T> entities = dao.listAllUpdated(date); 
-		return Json.listToJson(entities);
+		String json = Json.ListToJsonWithView(entities, ViewJson.summary.class);
+		return json;
 
 	}
 	
