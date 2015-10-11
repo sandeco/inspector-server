@@ -3,6 +3,8 @@ package com.inspector.controller;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +38,7 @@ public abstract class GenericController<T extends Serializable, ID extends Seria
 	 * @param date
 	 * @return
 	 */
+	@Transactional
 	@RequestMapping(value="/dataAlteracao/{date}", produces=MediaType.APPLICATION_JSON_VALUE) // BY REST
 	public @ResponseBody String getByDateRest(@PathVariable String date){
 		List<T> entities = dao.listAllUpdated(date); 

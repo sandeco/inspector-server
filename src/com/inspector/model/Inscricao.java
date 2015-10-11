@@ -87,6 +87,15 @@ public class Inscricao implements Serializable {
 	public void setIdPalestra(){
 		
 	}
+
+	@JsonView(ViewJson.summary.class)
+	public int getIdParticipante() {
+        return participante.getId();
+    }
+
+    public void setIdParticipante() {
+    }
+	
 	
 	@Override
 	public boolean equals(Object obj) {
