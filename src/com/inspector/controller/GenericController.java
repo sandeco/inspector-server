@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.inspector.persistence.dao.GenericDAO;
 import com.inspector.util.Json;
 import com.inspector.util.ViewJson;
@@ -55,6 +56,7 @@ public abstract class GenericController<T extends Serializable, ID extends Seria
 	 * @param id
 	 * @return
 	 */
+	
 	
 	@RequestMapping(value="/id/{id}", produces=MediaType.APPLICATION_JSON_VALUE) // BY REST
 	public @ResponseBody String getEEventoRest(@PathVariable ID id){
