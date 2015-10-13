@@ -36,9 +36,11 @@ public abstract class GenericDaoJPA<T extends Serializable, ID extends Serializa
 	
 	
 	private void close(){
+		/*
 		if(em.isOpen()){
 			em.close();
 		}
+		*/
 		
 	}
 
