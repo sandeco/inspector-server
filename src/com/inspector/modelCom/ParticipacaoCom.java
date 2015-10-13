@@ -23,5 +23,4 @@ public class ParticipacaoCom {
 		this.idParticipante = idParticipante;
 	}
     
-    
 }
