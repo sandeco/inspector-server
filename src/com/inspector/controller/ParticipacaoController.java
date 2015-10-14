@@ -7,6 +7,7 @@ import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.type.TypeReference;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,7 +25,7 @@ public class ParticipacaoController  {
 	private RespostaPersistencia resposta = new RespostaPersistencia();
 	private ParticipacaoDAO dao = new ParticipacaoDaoJPA();
 
-	@RequestMapping()
+	@RequestMapping(method=RequestMethod.POST)
 	public RespostaPersistencia receberParticipacoes(@RequestParam String participacoes){
 
 		List<ParticipacaoCom> list = null;
